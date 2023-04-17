@@ -9,6 +9,7 @@ type FormValues = {
     twitter: String;
     facebook: String;
   };
+  phoneNumbers: string[];
 };
 
 export default function YouTubeForm() {
@@ -21,6 +22,7 @@ export default function YouTubeForm() {
         twitter: "",
         facebook: "",
       },
+      phoneNumbers: ["", ""],
     },
 
     // we can also pass function as a default values
@@ -114,6 +116,24 @@ export default function YouTubeForm() {
         <div className="form-control">
           <label htmlFor="facebook">Facebook</label>
           <input type="text" id="facebook" {...register("social.facebook")} />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="primary-phone">Primary phone number</label>
+          <input
+            type="text"
+            id="primary-phone"
+            {...register("phoneNumbers.0")}
+          />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="secondary-phone">Secondary phone number</label>
+          <input
+            type="text"
+            id="secondary-phone"
+            {...register("phoneNumbers.1")}
+          />
         </div>
 
         <button>Submit</button>
