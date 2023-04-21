@@ -47,7 +47,15 @@ export default function YouTubeForm() {
     //   };
     // },
   });
-  const { register, control, handleSubmit, formState, watch, getValues } = form;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+  } = form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -62,6 +70,14 @@ export default function YouTubeForm() {
   const handleGetValues = () => {
     console.log("Get values", getValues());
     console.log("Get values('social.facebook')", getValues("social.facebook"));
+  };
+
+  const handleSetValue = () => {
+    setValue("username", "", {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
   };
 
   const watchUsername = watch("username");
@@ -231,6 +247,9 @@ export default function YouTubeForm() {
         <button>Submit</button>
         <button type="button" onClick={handleGetValues}>
           Get values
+        </button>
+        <button type="button" onClick={handleSetValue}>
+          Set values
         </button>
       </form>
       <DevTool control={control} />
