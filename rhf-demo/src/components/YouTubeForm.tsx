@@ -164,7 +164,14 @@ export default function YouTubeForm() {
 
         <div className="form-control">
           <label htmlFor="twitter">Twitter</label>
-          <input type="text" id="twitter" {...register("social.twitter")} />
+          <input
+            type="text"
+            id="twitter"
+            {...register("social.twitter", {
+              disabled: watch("channel") === "",
+              required: "Enter twitter profile",
+            })}
+          />
         </div>
 
         <div className="form-control">
