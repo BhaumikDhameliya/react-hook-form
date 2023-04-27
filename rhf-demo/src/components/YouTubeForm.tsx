@@ -55,6 +55,7 @@ export default function YouTubeForm() {
     watch,
     getValues,
     setValue,
+    reset,
   } = form;
   const {
     errors,
@@ -102,11 +103,15 @@ export default function YouTubeForm() {
   // const watchAllFields = watch();
 
   useEffect(() => {
-    const subscription = watch((value) => {
-      console.log("value----->", value);
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
+    reset();
+  }, [isSubmitSuccessful]);
+
+  // useEffect(() => {
+  //   const subscription = watch((value) => {
+  //     console.log("value----->", value);
+  //   });
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
 
   console.count("rendered");
   return (
@@ -269,6 +274,9 @@ export default function YouTubeForm() {
         </div>
 
         <button disabled={!isDirty || !isValid || !isSubmitting}>Submit</button>
+        <button type="button" onClick={() => reset()}>
+          Reset
+        </button>
         <button type="button" onClick={handleGetValues}>
           Get values
         </button>
